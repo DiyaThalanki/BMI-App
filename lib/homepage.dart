@@ -1,6 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:bmi/BMIScreen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -49,7 +50,13 @@ class _HomePageState extends State<HomePage> {
         color = Colors.red;
       }
     });
-  }
+    Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => BMIScreen(bmiValue),
+    ),
+  );
+}
 
   @override
   Widget build(BuildContext context) {
@@ -156,7 +163,7 @@ class _HomePageState extends State<HomePage> {
               height: 50,
             ),
             ElevatedButton(
-              onPressed: _computeBmi, // Connect the button to the computation method
+              onPressed: _computeBmi, 
               child: Padding(
                 padding: const EdgeInsets.only(
                   left: 12.0,
@@ -172,14 +179,7 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 20
             ),
-            Text(
-              bmi != null ? "BMI: ${bmi!.toStringAsFixed(2)}" : "",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: color ?? Colors.black,
-              ),
-            ),
+            
           ],
         ),
       ),
